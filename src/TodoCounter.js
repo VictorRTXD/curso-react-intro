@@ -1,3 +1,5 @@
+import "./TodoCounter.css";
+
 function TodoCounter({ total, completed }) {
     return (
       <h1>has completado {completed} de {total} TODOS</h1>
@@ -24,6 +26,19 @@ function TodoCounter(props) {
 function TodoCounter({ total, children }) {
     return (
       <h1>has completado {completed} de {total} TODOS</h1>
+    );
+}
+*/
+
+/* forma de importar css con llaves en jsx
+function TodoCounter({ total, completed }) {
+    return (
+      <h1 style={{
+        fontSize: '24px',
+        textAlign: 'center',
+        margin: 0,
+        padding: '48px'
+      }}>has completado {completed} de {total} TODOS</h1>
     );
 }
 */

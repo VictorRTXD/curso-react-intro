@@ -1,10 +1,9 @@
-import './App.css';
 import { TodoCounter } from "./TodoCounter.js";
 import { TodoSearch } from "./TodoSearch.js";
 import { TodoList } from "./TodoList.js";
 import { TodoItems } from "./TodoItem";
 import { CreateTodoButton } from "./CreateTodoButton";
-import React from 'react';
+import { TodoContainer } from "./TodoContainer.js";
 
 const defaultTodos = [
   { text: 'Cortar cebolla', completed: false},
@@ -19,25 +18,27 @@ function App() {
   return (
     // puede tener un componente que envuelva todo la logica o usar React.Fragment
     //si se usa React.Fragment, no aparecera el div que envuelve el jsx
-    <React.Fragment> 
-      <TodoCounter completed={15} total={25} />
-      <TodoCounter completed={8} total={77} />
-      <TodoCounter completed={3} total={25} />
-      <TodoSearch />
-      
-      <TodoList>
-        {/* <TodoItems />
-        <TodoItems />
-        <TodoItems />
-        <TodoItems /> */}
+    <> 
+      <TodoContainer>
+        <TodoCounter completed={15} total={25} />
 
-        {defaultTodos.map(todo => (
-          <TodoItems key={todo.text} text={todo.text} completed={todo.completed} /> //es necesario generar una key unica para renderizar
-        ))}
-      </TodoList>
-    
-      <CreateTodoButton />
-    </React.Fragment>
+        <TodoSearch className={"search"}/>
+        
+        <TodoList className={"todoList"}>
+          {/* <TodoItems />
+          <TodoItems />
+          <TodoItems />
+          <TodoItems /> */}
+
+          {/* los "{}" sirven para meter expresiones JS dentro de JSX */}
+          {defaultTodos.map(todo => (
+            <TodoItems key={todo.text} text={todo.text} completed={todo.completed} /> //es necesario generar una key unica para renderizar, text en este caso no se repite
+          ))}   
+        </TodoList>
+      
+        <CreateTodoButton />
+      </TodoContainer>
+    </>
   );
 }
 
