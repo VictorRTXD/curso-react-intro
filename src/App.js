@@ -1,47 +1,43 @@
-import { TodoCounter } from "./TodoCounter.js";
-import { TodoSearch } from "./TodoSearch.js";
-import { TodoList } from "./TodoList.js";
-import { TodoItems } from "./TodoItem";
-import { CreateTodoButton } from "./CreateTodoButton";
-import { TodoContainer } from "./TodoContainer.js";
+import React from 'react';
+import { TodoCounter } from './TodoCounter';
+import { TodoSearch } from './TodoSearch';
+import { TodoList } from './TodoList';
+import { TodoItem } from './TodoItem';
+import { CreateTodoButton } from './CreateTodoButton';
 
+// puede tener un componente que envuelva todo la logica o usar React.Fragment
+//si se usa React.Fragment, no aparecera el div que envuelve el jsx
 const defaultTodos = [
-  { text: 'Cortar cebolla', completed: false},
-  { text: 'Llorar con la llorona', completed: false},
-  { text: 'Aprender a programar mejor', completed: false},
-  { text: 'Mejorar la logica', completed: false},
-  { text: 'Mejorar la sensualidad', completed: false},
-  { text: 'Mejorar el gaming', completed: false}
+  { text: 'Cortar cebolla', completed: true },
+  { text: 'Tomar el Curso de Intro a React.js', completed: false },
+  { text: 'Llorar con la Llorona', completed: false },
+  { text: 'LALALALALA', completed: false },
 ];
 
 function App() {
   return (
-    // puede tener un componente que envuelva todo la logica o usar React.Fragment
-    //si se usa React.Fragment, no aparecera el div que envuelve el jsx
-    <> 
-      <TodoContainer>
-        <TodoCounter completed={15} total={25} />
+    <>
+      <TodoCounter completed={16} total={25} />
+      <TodoSearch />
 
-        <TodoSearch className={"search"}/>
-        
-        <TodoList className={"todoList"}>
-          {/* <TodoItems />
-          <TodoItems />
-          <TodoItems />
-          <TodoItems /> */}
-
-          {/* los "{}" sirven para meter expresiones JS dentro de JSX */}
-          {defaultTodos.map(todo => (
-            <TodoItems key={todo.text} text={todo.text} completed={todo.completed} /> //es necesario generar una key unica para renderizar, text en este caso no se repite
-          ))}   
-        </TodoList>
+      {/* <TodoItems />
+      <TodoItems />
+      <TodoItems />
+      <TodoItems /> */}
+      {/* los "{}" sirven para meter expresiones JS dentro de JSX */}
+      <TodoList>
+        {defaultTodos.map(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+          />
+        ))}
+      </TodoList>
       
-        <CreateTodoButton />
-      </TodoContainer>
+      <CreateTodoButton />
     </>
   );
 }
-
-
 
 export default App;

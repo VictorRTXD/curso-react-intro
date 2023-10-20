@@ -1,7 +1,5 @@
-ul {
-    display: flex;
-}
-
-li {
-
+.TodoLislt {
+    margin: 0;
+    padding: 0 0 56px 0;
+    list-style: none; /* ayuda a quitar los bullet points */
 }
