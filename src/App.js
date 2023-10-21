@@ -12,13 +12,32 @@ const defaultTodos = [
   { text: 'Tomar el Curso de Intro a React.js', completed: false },
   { text: 'Llorar con la Llorona', completed: false },
   { text: 'LALALALALA', completed: false },
+  { text: 'ya usamos estados derivados en react', completed: true},
 ];
 
 function App() {
+  const [todos, setTodos] = React.useState(defaultTodos);
+
+  //necesita un estado inicial que es vacio y actualizarla
+  const [searchValue, setsearchValue] = React.useState(''); 
+  console.log('los usuarios buscan todos de ' + searchValue);
+
+  // este metodo nos devuelve un array con las coincidencias 
+  const completedTodos = todos.filter(
+    //los !! devuelven un boleano, es irrelevante pero ayuda a identificar lo que recibimos
+    todo => !!todo.completed 
+  ).length; 
+  const totalTodos = todos.length;
+
   return (
     <>
-      <TodoCounter completed={16} total={25} />
-      <TodoSearch />
+      <TodoCounter 
+        completed={completedTodos} total={totalTodos} 
+      />
+      <TodoSearch 
+        searchValue = {searchValue} //recuerda que son props
+        setsearchValue = {setsearchValue}
+      />
 
       {/* <TodoItems />
       <TodoItems />
